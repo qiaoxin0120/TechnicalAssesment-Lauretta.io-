@@ -1,2 +1,33 @@
-# TechnicalAssesment-Lauretta.io-
-Video-based Person Re-Identification on Single Camera
+Namee: Seng Qiao Xin
+Question: Video-based PersonRe-Identification
+Date: 29/09/2022
+
+###The question which I have chosen was Question 1: Video-based PersonRe-Identification.
+###Below is some research and reason why I select the Multi-Camera Negative Loss (MCNL) algorithm in this question.
+
+Person Re-identification is frequently used with person detection or person tracking. For example, we can use it to track a prisoner who have just escaped given the raw image or help parents to find their missing children in the shopping mall. It is used to find a specific person across non-overlapping disjoint camera. It is challenging as its robust visual representation against the viewpoint changes. Person re-id usually depends on clothes, figure and accessories. It aims at retrieving a person of interest across multiple, non-overlapping cameras. The challenges included low resolution, occlusion, angle / pose variance, illumination change. 
+
+There are three opensource image datasets I found online based on person Re-ID for single frame, the first one is market1501. It has been collected from six near-synchronized cameras in Tsinghua University. It consists of 1501 different pedestrians and the photo taken were 32217 in total. The second one is DukeMTMC-reID. It has been collected from eight near-synchronized cameras in Duke University. It consists of 1812 different incollected from ten near-synchronized cameras in Chinese University of Hong Kong. It consists of 1467 different pedestrians and the photo taken were 13167 in total. The last one is the airport dataset which consists of 39,902 images and 9,651 identities across six cameras. There are five opensource video datasets I found online based on person Re-ID which are MARS, iLIDS-VIO, PRID2011 and DukeMTMC-VideoReID. 
+
+However, in this topic, I need to work with single-camera-training (SCT), where each person in the training set appears in only one camera. The advantages of using single camera are low-cost and easy in data collection and annotation, therefore it eases ReID system to be trained in a brand-new environment. Besides, it does not need of cross-camera persons or cross-camera annotation and deploy much faster. However, it also brings challenges due to lack of cross-camera person occurrences. To deal with this problem, I will propose a novel loss function named multi-camera negative loss (MCNL). This is a metric learning loss motivated by probability, suggesting that in a multi-camera system, one image is more likely to be closer to the most similar negative sample in other cameras than to the most similar negative sample in the same camera.
+
+Two main types of loss functions will be used to identify the performance. The first type is named the cross entropy (CE) loss, which requires the model to perform a classification task in which the same person in different cameras are categorized into one class. The second type is named the triplet margin (TM) loss, which assumes that the largest distance between two appearances of the same person should be smaller than the smallest distance between this person and another.
+
+After the professional run the code based on Market-1501 datasets and DukeMTMC-reID datasets, both of them fail dramatically due to camera isolation. From the DukeMTMC-reID dataset, they sample 5,993 images from the training set which satisfy the SCT setting, and the corresponding models, with CE and TM losses, report 40.2% and 21.2%, respectively. In comparison, they sample another training subset with the same number of images but equipped with cross-camera annotation, and these numbers become 69.3% and 75.8%, which verifies our hypothesis. The reason lead to this dramatic accuracy drop is ReID systems need to learn feature embeddings camera-independent( camera-unrelated features). However, both CE and TM losses cannot achieve this by themselves as they highly rely on cross-camera annotations. Therefore, the expectation of similarity between two different persons in the same camera should not be higher than that between two different persons from two cameras.
+
+Therefore, I will use the Multi-Camera Negative Loss (MCNL) algorithm. It will ensure that, given any anchor image in one camera, the most similar negative image is more likely to be found from other cameras, and the negative image should be less similar to the anchor image, compared to the most dissimilar positive image. The formula of MCNL is listed below:
+
+The MCNL has the following advantages: (i) It can alleviate the camera isolation problem. Through pulling the cross-camera negative pairs closer and pushing the within-camera negative pairs away, MCNL forces the feature extraction model to ignore the camera clues. (ii) Same with previous metric learning approaches, MCNL can force the feature extraction model to learn a more discriminative representation by adding the constraint that, the hardest positive image should be closer to the anchor image, compared with the negative images (both cross camera and within-camera negative images).
+
+So, for the reference. First, I exclude the all the given example resource as they all do the algorithms based on multi camera while the question required me to do the person reidentification based on single camera.
+After viewing plethora of resources available online, I decided to choose the existing codes provided by FlyHighest (https://github.com/FlyHighest/Single-Camera-Training-ReID).
+
+The reason which I chose the code from FlyHighest is because after reasearching, I found MCNL is the best approach / algorithm for SINGLE CAMERA in video-based Person ReIdentification topic. However, as DukeMTMC-reID datasets has been retracted and not available online, I will only use Market-1501 datasets for this questions
+
+(All code are uploaded in github)
+First, I will do the initialization and state whether it is using GPU or CPU. Next, I will prepare the training dataset and test dataset.Third step, I will prepare the backbone network which using triplet. Fourth step, I will prepare the loss functions which included distance loss, triplet loss and cls. Fifth step will be prepare optimizer and the trainer based on their model name (distance, triplet or softmax). Step six will be training the data using epoch and print out the best rank-1 accurancy and which epoch it achieved at.
+
+Traditional trackers such as DeepSort, R-CNN (tensorflow) or Fairmot is suitable for multiple object tracking. The object can be people, animals or cars. In DeepSORT, we need to have detection in order to perform tracking. It is a tracking-by-detection method. The detection results are input to the Kalman filter component of DeepSORT. The filter generates tracking predictions. Also, the bounding boxes from detection are used to extract crops of RoI from the input image. These image crops are used by the trained Siamese model for feature extraction. The feature extraction by the Siamese model helps in reducing ID Switch.
+
+
+
