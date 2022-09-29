@@ -1,0 +1,65 @@
+=========user config==========
+{'device_ids': [0],
+ 'drop': 0.5,
+ 'eval_step': 20,
+ 'gamma': 0.1,
+ 'height': 256,
+ 'keep_layer': None,
+ 'keepfc': False,
+ 'last_stride': 1,
+ 'lr': 0.01,
+ 'margin': None,
+ 'margin1': 0.1,
+ 'margin2': 0.1,
+ 'max_epoch': 200,
+ 'model_name': 'distance',
+ 'model_path': 'resnet50-19c8e357.pth',
+ 'momentum': 0.9,
+ 'num_gpu': 2,
+ 'num_instances': 8,
+ 'optim': 'Adam',
+ 'optstep': (100, 200),
+ 'pretrained_model': 'resnet50-19c8e357.pth',
+ 'print_freq': 30,
+ 'sampler': 'randomidentitycamera',
+ 'save_dir': 'path_to_save/market_sct_mcnl',
+ 'seed': 0,
+ 'start_epoch': 0,
+ 'step_size': 40,
+ 'stripes': 6,
+ 'test_batch': 128,
+ 'testepoch': 90,
+ 'testset': 'market_sct',
+ 'train_batch': 240,
+ 'trainset': 'market_sct',
+ 'weight_decay': 0.0005,
+ 'width': 128,
+ 'with_normalize': True,
+ 'with_randomerase': False,
+ 'workers': 5}
+============end===============
+currently using cpu
+initializing train dataset market_sct
+=> Market1501 (Single-Camera-Training ver.) loaded
+Dataset statistics:
+  ------------------------------
+  subset   | # ids | # images
+  ------------------------------
+  train    |     0 |        0
+  query    |   750 |     3368
+  gallery  |   751 |    15913
+  ------------------------------
+  total    |   750 |    19281
+  ------------------------------
+initializing test dataset market_sct
+=> Market1501 (Single-Camera-Training ver.) loaded
+Dataset statistics:
+  ------------------------------
+  subset   | # ids | # images
+  ------------------------------
+  train    |     0 |        0
+  query    |   750 |     3368
+  gallery  |   751 |    15913
+  ------------------------------
+  total    |   750 |    19281
+  ------------------------------
