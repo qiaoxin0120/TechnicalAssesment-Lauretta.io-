@@ -1,9 +1,9 @@
-Namee: Seng Qiao Xin
-Question: Video-based PersonRe-Identification
-Date: 29/09/2022
+### Name: Seng Qiao Xin
+### Question: Video-based PersonRe-Identification
+### Date: 29/09/2022
 
-###The question which I have chosen was Question 1: Video-based PersonRe-Identification.
-###Below is some research and reason why I select the Multi-Camera Negative Loss (MCNL) algorithm in this question.
+### The question which I have chosen was Question 1: Video-based PersonRe-Identification.
+### Below is some research and reason why I select the Multi-Camera Negative Loss (MCNL) algorithm in this question.
 
 Person Re-identification is frequently used with person detection or person tracking. For example, we can use it to track a prisoner who have just escaped given the raw image or help parents to find their missing children in the shopping mall. It is used to find a specific person across non-overlapping disjoint camera. It is challenging as its robust visual representation against the viewpoint changes. Person re-id usually depends on clothes, figure and accessories. It aims at retrieving a person of interest across multiple, non-overlapping cameras. The challenges included low resolution, occlusion, angle / pose variance, illumination change. 
 
